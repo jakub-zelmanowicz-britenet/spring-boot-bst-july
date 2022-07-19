@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import pl.britenet.campus.database.DatabaseService;
 import pl.britenet.campus.service.ProductService;
+import pl.britenet.campus.service.UserService;
 
 @Configuration
 public class ServiceConfig {
@@ -19,5 +20,10 @@ public class ServiceConfig {
     @Bean
     public ProductService getProductService() {
         return new ProductService(this.databaseService);
+    }
+
+    @Bean
+    public UserService getUserService() {
+        return new UserService(this.databaseService);
     }
 }
