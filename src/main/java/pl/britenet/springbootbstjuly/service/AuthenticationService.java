@@ -41,6 +41,10 @@ public class AuthenticationService {
         return this.activeTokens.containsKey(userToken);
     }
 
+    public int getUserId(String token) {
+        return this.activeTokens.get(token);
+    }
+
     public void register(UserCredentials userCredentials) {
         //TODO
     }

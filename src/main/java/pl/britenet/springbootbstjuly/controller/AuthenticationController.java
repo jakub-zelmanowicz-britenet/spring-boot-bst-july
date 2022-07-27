@@ -6,6 +6,7 @@ import pl.britenet.springbootbstjuly.model.UserCredentials;
 import pl.britenet.springbootbstjuly.model.UserLoginData;
 import pl.britenet.springbootbstjuly.service.AuthenticationService;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/api/v1/authentication")
 public class AuthenticationController {

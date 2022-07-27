@@ -4,19 +4,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pl.britenet.campus.object.Product;
 import pl.britenet.campus.service.ProductService;
+import pl.britenet.springbootbstjuly.service.AuthenticationService;
 
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin("http://localhost:63342")
 @RestController
 @RequestMapping("/api/v1/product")
 public class ProductsController {
 
     private final ProductService productService;
+    private final AuthenticationService authenticationService;
 
     @Autowired
-    public ProductsController(ProductService productService) {
+    public ProductsController(ProductService productService, AuthenticationService authenticationService) {
         this.productService = productService;
+        this.authenticationService = authenticationService;
     }
 
     @GetMapping("/{id}")
@@ -30,7 +34,10 @@ public class ProductsController {
     }
 
     @PostMapping
-    public void createProduct(@RequestBody Product product) {
+    public void createProduct(@RequestHeader("Authorization") String user_token) {
+        System.out.println("Token: " + user_token);
+        int user_id = authenticationService.getUserId(user_token);
+        System.out.println("Retrieved User ID: " + user_id);
          // this.productService.createProduct(product);
     }
 
